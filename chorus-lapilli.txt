@@ -1,0 +1,60 @@
+This is building off the tic-tac-toe.txt file:
+
+1) We want a state variable to keep track of the previous square we clicked so we can implement the moving feature: 
+const [prevClicked, setPrevClicked] = useState({index: null, letter: null});
+
+2) We also want to make a function to determine whether a move is valid in the adjacent context. This can be done by writing out the
+square to visualize: 
+0 1 2
+3 4 5
+6 7 8
+and then seeing which squares are adjacent with which
+
+3) Everything else we will edit will be in the handleClick(i) function. 
+
+4) First we implement the moving X and O without considering the second condition: "If it is your turn to move and you have three 
+pieces on the board and one of your pieces is in the center square, your move must either win or vacate the center square."
+
+5) We do not touch the state variable we created unless it's after 3 moves each person, so we add a conditional to check if 
+countMove > 5, i.e. 6 actions have been performed (3 X's and 3 O's). Now everything written will be in this conditional
+
+6) First check if prevClicked.index is null: this tells us if we've clicked on a X or O yet to move. If it's null, then we want to set
+the X or O we clicked as the prevClicked (set the index and letter using setPrevClicked). If its null, and we clicked an empty square, we just return.
+Note: To make things easier for future, we can go ahead and check if we should be clicking on the X or O as well. Ex) if it's X turn,
+clicking O will result in a return as well, because we know that move wiill be invalid.
+
+7) If prevClicked.index isn't null, then it means we already clicked on a X or O. Check if it's X or O's turn. I'll give example
+for if X, and it'll be nearly identical for O:
+    - Check if the middle is 'X' (this is for later, to see whether there is still X in the middle after the turn)
+    - If the two squares are adjacent, then set the original X square to null, and set new square to X. 
+    - If it was middle, check to see either if X is still in middle, or if X won, then it doesn't matter.
+
+8) Finally set prevClicked back to null values. And do the same for "O"
+
+
+
+
+npm pack --dry-run: 
+
+npm notice 
+npm notice 📦  react.dev@0.0.0
+npm notice === Tarball Contents === 
+npm notice 2.1kB chorus-lapilli.txt    
+npm notice 609B  package.json          
+npm notice 218B  public/index.html     
+npm notice 6.0kB src/App.js            
+npm notice 256B  src/index.js          
+npm notice 968B  src/styles.css        
+npm notice 9.8kB test_chorus_lapilli.py
+npm notice 3.4kB tic-tac-toe.txt       
+npm notice === Tarball Details === 
+npm notice name:          react.dev                               
+npm notice version:       0.0.0                                   
+npm notice filename:      react.dev-0.0.0.tgz                     
+npm notice package size:  7.6 kB                                  
+npm notice unpacked size: 23.4 kB                                 
+npm notice shasum:        cdf8b655cdab7e901c68dabfd11e9f8748d9da25
+npm notice integrity:     sha512-/PNHUFdRtEFUZ[...]xeI5s6pBH4gnQ==
+npm notice total files:   8                                       
+npm notice 
+react.dev-0.0.0.tgz
